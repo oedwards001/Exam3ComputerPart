@@ -1,7 +1,7 @@
 import tkinter as tk
 
 ###############################################################################
-# TODO: 1. (2 pts)
+# Done: 1. (2 pts)
 #
 #   The todos in this module are in one comment because you will be modifying
 #   the same bit of code each time. Here you will create a basic ATM
@@ -13,7 +13,7 @@ import tkinter as tk
 #   Once you have done this, then change the above _TODO_ to DONE.
 #
 #
-# TODO: 2. (3 pts)
+# Done: 2. (3 pts)
 #
 #   For this _todo_, you will create an area where the user's current balance
 #   is displayed. There should be a label that says "Current Balance ($):" and
@@ -27,7 +27,7 @@ import tkinter as tk
 #   Once you have done this, then change the above _TODO_ to DONE.
 #
 #
-# TODO: 3 (3 pts)
+# Done: 3 (3 pts)
 #
 #   For this _todo_, create two more labels: one that says "Amount ($):" and
 #   another that starts out empty beneath it. This is where the user's amount
@@ -36,7 +36,7 @@ import tkinter as tk
 #   Once you have done this, then change the above _TODO_ to DONE.
 #
 #
-# TODO: 4. (7 pts)
+# Done: 4. (7 pts)
 #
 #   For this _todo_, you will create all the buttons that the user needs:
 #
@@ -52,7 +52,7 @@ import tkinter as tk
 #   Once you have done this, then change the above _TODO_ to DONE.
 #
 #
-# TODO: 5. (10 pts)
+# Done: 5. (10 pts)
 #
 #   For this _todo_, using the command keyword on each button to have each
 #   number button type that digit in the amount label above (just like you
@@ -78,7 +78,7 @@ import tkinter as tk
 #   Once you have done this, then change the above _TODO_ to DONE.
 #
 #
-# TODO: 5. (3 pts)
+# Done: 5. (3 pts)
 #
 #   For this _todo_, bind the window to any keypress so that if the user types
 #   a number, it also types that number into the amount label. Remember, you
@@ -86,3 +86,108 @@ import tkinter as tk
 #
 #   Once you have done this, then change the above _TODO_ to DONE.
 ###############################################################################
+window = tk.Tk()
+
+window.title("ATM")
+
+CurrentBalanceLabel = tk.Label(master = window, text = "Current Balance ($):")
+CurrentBalanceLabel.pack()
+
+DollarLabel = tk.Label(master = window, text = float(1000))
+DollarLabel.pack()
+
+DollarAmountLabel = tk.Label(master = window, text = "Amount($):")
+DollarAmountLabel.pack()
+
+ChangeableAmountLabel = tk.Label(master = window, text = "")
+ChangeableAmountLabel.pack()
+
+frame = tk.Frame(master = window)
+frame.pack()
+
+frame.rowconfigure([0, 1, 2, 3], weight = 1, minsize = 75)
+frame.columnconfigure([0, 1, 2], weight = 1, minsize = 75)
+
+def button1_handler():
+    ChangeableAmountLabel["text"] = ChangeableAmountLabel["text"] + "1"
+
+button1 = tk.Button(master = frame, command = button1_handler, text = "1")
+button1.grid(row = 0, column = 0, sticky = "nsew")
+
+def button2_handler():
+    ChangeableAmountLabel["text"] = ChangeableAmountLabel["text"] + "2"
+
+button2 = tk.Button(master = frame, command = button2_handler, text = "2")
+button2.grid(row = 0, column = 1, sticky = "nsew")
+
+def button3_handler():
+    ChangeableAmountLabel["text"] = ChangeableAmountLabel["text"] + "3"
+
+button3 = tk.Button(master = frame, command = button3_handler, text = "3")
+button3.grid(row = 0, column = 2, sticky = "nsew")
+
+def button4_handler():
+    ChangeableAmountLabel["text"] = ChangeableAmountLabel["text"] + "4"
+
+button4 = tk.Button(master = frame, command = button4_handler, text = "4")
+button4.grid(row = 1, column = 0, sticky = "nsew")
+
+def button5_handler():
+    ChangeableAmountLabel["text"] = ChangeableAmountLabel["text"] + "5"
+
+button5 = tk.Button(master = frame, command = button5_handler, text = "5")
+button5.grid(row = 1, column = 1, sticky = "nsew")
+
+def button6_handler():
+    ChangeableAmountLabel["text"] = ChangeableAmountLabel["text"] + "6"
+
+button6 = tk.Button(master = frame, command = button6_handler, text = "6")
+button6.grid(row = 1, column = 2, sticky = "nsew")
+
+def button7_handler():
+    ChangeableAmountLabel["text"] = ChangeableAmountLabel["text"] + "7"
+
+button7 = tk.Button(master = frame, command = button7_handler, text = "7")
+button7.grid(row = 2, column = 0, sticky = "nsew")
+
+def button8_handler():
+   ChangeableAmountLabel ["text"] = ChangeableAmountLabel["text"] + "8"
+
+button8 = tk.Button(master = frame, command = button8_handler, text = "8")
+button8.grid(row = 2, column = 1, sticky = "nsew")
+
+def button9_handler():
+    ChangeableAmountLabel["text"] = ChangeableAmountLabel["text"] + "9"
+
+button9 = tk.Button(master = frame, command = button9_handler, text = "9")
+button9.grid(row = 2, column = 2, sticky = "nsew")
+
+def button0_handler():
+    ChangeableAmountLabel["text"] = ChangeableAmountLabel["text"] + "0"
+
+button0 = tk.Button(master = frame, command = button0_handler, text = "0")
+button0.grid(row = 3, column = 1, sticky = "nsew")
+
+def withdrawalbutton_handler():
+    DollarLabel = 0
+    DollarLabel["text"] = DollarLabel["text"] - ChangeableAmountLabel["text"]
+    ChangeableAmountLabel["text"] = ""
+
+Withdrawbutton = tk.Button(master = frame, command = withdrawalbutton_handler, text = "Withdraw")
+Withdrawbutton.grid(row = 3, column = 0, sticky = "nsew")
+
+def depositbutton_handler():
+    DollarLabel = 0
+    DollarLabel = DollarLabel + ChangeableAmountLabel
+    ChangeableAmountLabel["text"] = ""
+
+depositbutton = tk.Button(master = frame, command = depositbutton_handler, text = "Deposit")
+depositbutton.grid(row = 3, column = 2, sticky = "nsew")
+
+def key_handler(event):
+    if event.char.isdigit():
+        ChangeableAmountLabel["text"] = ChangeableAmountLabel["text"] + event.char
+
+window.bind("<Key>", key_handler)
+
+window.mainloop()
